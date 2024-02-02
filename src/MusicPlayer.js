@@ -1,7 +1,5 @@
-// MusicPlayer.js
-
 import React, { useState } from 'react';
-import CustomAudioPlayer from './AudioPlayer'; // 이전에 만든 CustomAudioPlayer 컴포넌트 추가
+import AudioPlayer from 'react-audio-player';
 import './MusicPlayer.css'; // 스타일 파일 추가
 
 const MusicPlayer = () =>
@@ -53,9 +51,11 @@ const MusicPlayer = () =>
     return (
         <div className="music-player-container">
             <h2 className="app-title">Music Player App</h2>
-            <CustomAudioPlayer
+            <AudioPlayer
+                autoPlay
+                controls
                 playlist={playlist}
-                isPlaying={isPlaying}
+                playing={isPlaying}
                 onEnded={handleEnd}
             />
             <div className="control-buttons">
