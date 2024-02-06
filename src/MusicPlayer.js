@@ -1,56 +1,55 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AudioPlayer from 'react-audio-player';
 import './MusicPlayer.css'; // 스타일 파일 추가
 
 const MusicPlayer = () =>
 {
     const initialPlaylist = [
-        { name: 'Song 1', src: 'path/to/song1.mp3' },
-        { name: 'Song 2', src: 'path/to/song2.mp3' },
+        { name: 'song1', src: '/music/song1.mp3' },
+        { name: 'song2', src: '/music/song2.mp3' },
+        { name: 'song3', src: '/music/song3.mp3' },
+        { name: 'song4', src: '/music/song4.mp3' },
+        { name: 'song5', src: '/music/song5.mp3' },
+        { name: 'song6', src: '/music/song6.mp3' },
+        { name: 'song7', src: '/music/song7.mp3' },
+        { name: 'song8', src: '/music/song8.mp3' },
+        { name: 'song9', src: '/music/song9.mp3' },
+        { name: 'song10', src: '/music/song10.mp3' },
+        { name: 'song11', src: '/music/song11.mp3' },
         // Add more songs as needed
     ];
-
-    const [playlist, setPlaylist] = useState(initialPlaylist);
-    const [isPlaying, setIsPlaying] = useState(true);
-
-    const handlePlayPause = () =>
-    {
-        setIsPlaying(!isPlaying);
-    };
-
-    const handleStop = () =>
-    {
-        setIsPlaying(false);
-    };
-
-    const handleSave = () =>
-    {
-        // 실제로는 서버에 플레이리스트를 저장하거나 로컬 스토리지를 활용할 수 있습니다.
-        alert('플레이리스트가 저장되었습니다.');
-    };
-
-    const handleDelete = () =>
-    {
-        // 실제로는 선택된 음악 파일을 삭제하거나 서버에서 삭제하는 로직을 추가해야 합니다.
-        alert('현재 음악 파일이 삭제되었습니다.');
-    };
-
+    let index = useRef(1); // 현재 재생중인 노래의 인덱스
+    const [nowSong, setNowSong] = useState(initialPlaylist[index.current].src);
+    let rap;
     return (
         <div className="music-player-container">
             <h2 className="app-title">Music Player App</h2>
             <AudioPlayer
+                ref={(element) => { rap = element; }}
                 autoPlay
                 controls
-                playlist={playlist}
-                playing={isPlaying}
+                src={nowSong}
+                onEnded={(e) =>
+                {
+                    index.current++; // 다음 노래 인덱스
+                    setNowSong(initialPlaylist[index.current].src);
+                }}
             />
             <div className="control-buttons">
-                <button onClick={handlePlayPause} className="play-pause-btn">
-                    {isPlaying ? '일시정지' : '재생'}
-                </button>
-                <button onClick={handleStop} className="stop-btn">정지</button>
-                <button onClick={handleSave} className="save-btn">저장</button>
-                <button onClick={handleDelete} className="delete-btn">삭제</button>
+                <button onClick={() =>
+                {
+                    setNowSong("");
+                }} className="stop-btn">정지</button>
+                <button onClick={() =>
+                {
+                    index.current--; // 이전 노래 인덱스
+                    setNowSong(initialPlaylist[index.current].src);
+                }} className="prev-track-btn">이전 트랙</button>
+                <button onClick={() =>
+                {
+                    index.current++; // 다음 노래 인덱스
+                    setNowSong(initialPlaylist[index.current].src);
+                }} className="next-track-btn">다음 트랙</button>
             </div>
         </div>
     );
