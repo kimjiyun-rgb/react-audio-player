@@ -22,7 +22,7 @@ const MusicPlayer = () =>
         { name: 'song15', src: '/music/song15.mp3' },
         // Add more songs as needed
     ];
-    let index = useRef(1); // 현재 재생중인 노래의 인덱스
+    let index = useRef(0); // 현재 재생중인 노래의 인덱스
     const [nowSong, setNowSong] = useState(initialPlaylist[index.current].src);
     let rap;
     return (
@@ -48,11 +48,19 @@ const MusicPlayer = () =>
                 {
                     index.current--; // 이전 노래 인덱스
                     setNowSong(initialPlaylist[index.current].src);
-                }} className="prev-track-btn">이전 트랙</button>
+                }
+                } className="prev-track-btn">이전 트랙</button>
                 <button onClick={() =>
                 {
-                    index.current++; // 다음 노래 인덱스
-                    setNowSong(initialPlaylist[index.current].src);
+                    const last = initialPlaylist.length - 1; // 14
+                    if (last == index.current)
+                    { // 마지막 노래이면
+                        alert("노래없음");
+                    } else
+                    {
+                        index.current++; // 다음 노래 인덱스
+                        setNowSong(initialPlaylist[index.current].src);
+                    }
                 }} className="next-track-btn">다음 트랙</button>
             </div>
         </div>
