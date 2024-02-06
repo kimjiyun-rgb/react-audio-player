@@ -20,7 +20,6 @@ const MusicPlayer = () =>
         { name: 'song13', src: '/music/song13.mp3' },
         { name: 'song14', src: '/music/song14.mp3' },
         { name: 'song15', src: '/music/song15.mp3' },
-        // Add more songs as needed
     ];
     let index = useRef(0); // 현재 재생중인 노래의 인덱스
     const [nowSong, setNowSong] = useState(initialPlaylist[index.current].src);
@@ -46,8 +45,15 @@ const MusicPlayer = () =>
                 }} className="stop-btn">정지</button>
                 <button onClick={() =>
                 {
-                    index.current--; // 이전 노래 인덱스
-                    setNowSong(initialPlaylist[index.current].src);
+                    if (index.current == 0)
+                    {
+                        const last = initialPlaylist.length - 1; // 14                 
+                        setNowSong(initialPlaylist[last].src);
+                    } else
+                    {
+                        index.current--; // 이전 노래 인덱스
+                        setNowSong(initialPlaylist[index.current].src);
+                    }
                 }
                 } className="prev-track-btn">이전 트랙</button>
                 <button onClick={() =>
