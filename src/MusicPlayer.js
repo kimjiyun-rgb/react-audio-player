@@ -16,6 +16,7 @@ const MusicPlayer = () =>
         { name: 'song9', src: '/music/song9.mp3' },
         { name: 'song10', src: '/music/song10.mp3' },
         { name: 'song11', src: '/music/song11.mp3' },
+        { name: 'song12', src: '/music/song12.mp3' },
         // Add more songs as needed
     ];
     let index = useRef(1); // 현재 재생중인 노래의 인덱스
