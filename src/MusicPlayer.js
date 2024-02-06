@@ -62,6 +62,7 @@ const MusicPlayer = () =>
                     if (last == index.current)
                     { // 마지막 노래이면
                         alert("노래없음");
+                        setNowSong("");
                     } else
                     {
                         index.current++; // 다음 노래 인덱스
