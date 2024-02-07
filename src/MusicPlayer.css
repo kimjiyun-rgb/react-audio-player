@@ -16,6 +16,23 @@
     margin-top: 20px;
 }
 
+.start-btn {
+    padding: 10px 20px;
+    margin: 0 5px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #b618f5;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+}
+
+
+.start-btn:hover {
+    background-color: #9607f5;
+}
+
 .stop-btn {
     padding: 10px 20px;
     margin: 0 5px;

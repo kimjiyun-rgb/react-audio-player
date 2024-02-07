@@ -22,7 +22,7 @@ const MusicPlayer = () =>
         { name: 'song15', src: '/music/song15.mp3' },
     ];
     let index = useRef(0); // 현재 재생중인 노래의 인덱스
-    const [nowSong, setNowSong] = useState(initialPlaylist[index.current].src);
+    const [nowSong, setNowSong] = useState("");
     let rap;
     return (
         <div className="music-player-container">
@@ -34,8 +34,16 @@ const MusicPlayer = () =>
                 src={nowSong}
                 onEnded={(e) =>
                 {
-                    index.current++; // 다음 노래 인덱스
-                    setNowSong(initialPlaylist[index.current].src);
+                    const last = initialPlaylist.length - 1; // 14
+                    if (last == index.current)
+                    { // 마지막 노래이면
+                        alert("노래없음");
+                        setNowSong("");
+                    } else
+                    {
+                        index.current++; // 다음 노래 인덱스
+                        setNowSong(initialPlaylist[index.current].src);
+                    }
                 }}
             />
             <div className="control-buttons">
@@ -43,6 +51,11 @@ const MusicPlayer = () =>
                 {
                     setNowSong("");
                 }} className="stop-btn">정지</button>
+                <button onClick={() =>
+                {
+                    index.current = 0
+                    setNowSong(initialPlaylist[0].src);
+                }} className="start-btn">재생</button>
                 <button onClick={() =>
                 {
                     if (index.current == 0)
