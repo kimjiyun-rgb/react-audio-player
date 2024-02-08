@@ -1,0 +1,21 @@
+.list {
+    list-style: initial;
+    padding: 0;
+}
+
+.list li {
+    border: 1px solid #04fafa;
+    background-color: #04fafa;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(8, 253, 233, 0.1);
+    transition: transform 0.2s;
+}
+
+.list li:hover {
+    transform: scale(1.05);
+}

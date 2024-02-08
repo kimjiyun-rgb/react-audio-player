@@ -1,9 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import AudioPlayer from 'react-audio-player';
 import './MusicPlayer.css'; // 스타일 파일 추가
+import { useLocation } from 'react-router-dom';
 
 const MusicPlayer = () =>
 {
+    const location = useLocation();
+    const params = location.search;
+    const searchParams = new URLSearchParams(params);
+    const id = searchParams.get('id');
+    const next = searchParams.get('next');
+    console.log(id);
+    console.log(next);
+
     const initialPlaylist = [
         { name: 'song1', src: '/music/song1.mp3' },
         { name: 'song2', src: '/music/song2.mp3' },
@@ -22,7 +31,7 @@ const MusicPlayer = () =>
         { name: 'song15', src: '/music/song15.mp3' },
     ];
     let index = useRef(0); // 현재 재생중인 노래의 인덱스
-    const [nowSong, setNowSong] = useState("");
+    const [nowSong, setNowSong] = useState(next);
     let rap;
     return (
         <div className="music-player-container">
@@ -82,6 +91,10 @@ const MusicPlayer = () =>
                         setNowSong(initialPlaylist[index.current].src);
                     }
                 }} className="next-track-btn">다음 트랙</button>
+                <button onClick={() =>
+                {
+
+                }} className="item-btn">{ }</button>
             </div>
         </div>
     );
