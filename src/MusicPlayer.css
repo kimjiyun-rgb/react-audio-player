@@ -4,12 +4,12 @@
     padding: 20px;
     background-color: #06f81a;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(198, 35, 219, 0.1);
+    box-shadow: 0 0 10px rgba(10, 10, 10, 0.918);
     text-align: center;
 }
 
 .app-title {
-    color: #0921fc;
+    color: #f9fd0d;
 }
 
 .control-buttons {
