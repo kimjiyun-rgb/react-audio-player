@@ -26,7 +26,7 @@ const TrackList = () =>
                 {
                     list.map((item, idx) =>
                     {
-                        return <li key={idx}><a href={`/?id=${item.name}&next=${item.src}`}>{item.src}</a></li>
+                        return <li key={idx}><a href={`/?id=${item.name}&next=${item.src}&index=${idx}`}>{item.src}</a></li>
                     })
                 }
             </ul>
