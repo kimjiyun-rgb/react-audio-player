@@ -11,9 +11,6 @@ const MusicPlayer = () =>
     const id = searchParams.get('id');
     const next = searchParams.get('next');
     const index2 = searchParams.get('index');
-    console.log(id);
-    console.log(next);
-    console.log(index2);
 
     const initialPlaylist = [
         { name: 'song1', src: '/music/song1.mp3' },
@@ -34,6 +31,7 @@ const MusicPlayer = () =>
     ];
     let index = useRef(index2); // 현재 재생중인 노래의 인덱스
     const [nowSong, setNowSong] = useState(next);
+    const [isRepeat, setIsRepeat] = useState(false);
     let rap;
     return (
         <div className="music-player-container">
@@ -43,18 +41,26 @@ const MusicPlayer = () =>
                 autoPlay
                 controls
                 src={nowSong}
+                loop={isRepeat}
                 onEnded={(e) =>
                 {
-                    const last = initialPlaylist.length - 1; // 14
-                    if (last == index.current)
-                    { // 마지막 노래이면
-                        alert("노래없음");
-                        setNowSong("");
+                    if (isRepeat)
+                    {
+
                     } else
                     {
-                        index.current++; // 다음 노래 인덱스
-                        setNowSong(initialPlaylist[index.current].src);
+                        const last = initialPlaylist.length - 1; // 14
+                        if (last == index.current)
+                        { // 마지막 노래이면
+                            alert("노래없음");
+                            setNowSong("");
+                        } else
+                        {
+                            index.current++; // 다음 노래 인덱스
+                            setNowSong(initialPlaylist[index.current].src);
+                        }
                     }
+
                 }}
             />
             <div className="control-buttons">
@@ -67,6 +73,10 @@ const MusicPlayer = () =>
                     index.current = 0
                     setNowSong(initialPlaylist[0].src);
                 }} className="start-btn">재생</button>
+                <button onClick={() =>
+                {
+                    setIsRepeat(!isRepeat);
+                }} className="toggle-repeat-btn">반복 재생</button>
                 <button onClick={() =>
                 {
                     if (index.current == 0)
