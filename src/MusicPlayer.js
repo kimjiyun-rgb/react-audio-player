@@ -82,6 +82,7 @@ const MusicPlayer = () =>
                     if (index.current == 0)
                     {
                         const last = initialPlaylist.length - 1; // 14                 
+                        index.current = last
                         setNowSong(initialPlaylist[last].src);
                     } else
                     {
@@ -97,6 +98,7 @@ const MusicPlayer = () =>
                     { // 마지막 노래이면
                         alert("노래없음");
                         setNowSong("");
+                        index.current = 0;
                     } else
                     {
                         index.current++; // 다음 노래 인덱스
