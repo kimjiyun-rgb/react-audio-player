@@ -29,7 +29,7 @@ const MusicPlayer = () =>
         { name: 'song14', src: '/music/song14.mp3' },
         { name: 'song15', src: '/music/song15.mp3' },
     ];
-    let index = useRef(index2); // 현재 재생중인 노래의 인덱스
+    let index = useRef(""); // 현재 재생중인 노래의 인덱스
     const [nowSong, setNowSong] = useState(next);
     const [isRepeat, setIsRepeat] = useState(false);
     let rap;
